@@ -5,7 +5,11 @@ import java.util.stream.IntStream;
 
 public class CountDownLatchDemo {
     public static void main(String[] args) throws InterruptedException {
+        /***
+         * 等待所有就绪继续
+         */
         CyclicBarrier cyclicBarrier = new CyclicBarrier(2);
+
         IntStream.range(0, 2).forEach(i -> {
             new Thread(() -> {
                 try {
