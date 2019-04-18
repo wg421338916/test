@@ -1,10 +1,15 @@
 import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 public class CountDownLatchDemo {
     public static void main(String[] args) throws InterruptedException {
+
+        CountDownLatch countDownLatch = new CountDownLatch(0);
+        countDownLatch.await();
+
         /***
          * 等待所有就绪继续
          */
