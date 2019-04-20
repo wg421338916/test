@@ -9,14 +9,14 @@ public class ReentrantLockDemo {
         Condition condition = lock.newCondition();
 
         condition.await();
-        condition.signal();;
+        condition.signal();
 
 //        lock.tryLock()
 //        lock.lock();
 //        lock.unlock();
 
 //
-//        ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
+       ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
 //        reentrantReadWriteLock.readLock().lock();
 
 
