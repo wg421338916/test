@@ -6,7 +6,11 @@
 
     <groupId>com.wanggang</groupId>
     <artifactId>studydemo</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>zookeeperstudy</module>
+    </modules>
 
 
 </project>

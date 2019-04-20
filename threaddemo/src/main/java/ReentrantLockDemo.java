@@ -4,12 +4,12 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ReentrantLockDemo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Lock lock = new ReentrantLock(true);//公平锁
         Condition condition = lock.newCondition();
 
-
-
+        condition.await();
+        condition.signal();;
 
 //        lock.tryLock()
 //        lock.lock();
