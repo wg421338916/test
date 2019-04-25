@@ -15,6 +15,11 @@ import org.springframework.stereotype.Component;
 @Component
 @EnableAsync
 public class SthListener {
+    /***
+     @Autowired
+     private ApplicationEventPublisher publisher;
+     publisher.publishEvent(new BlogModifiedEvent(false));
+     */
     @Async    //Remember to enable asynchronous method execution  in your application with @EnableAsync
     @EventListener(condition = "#blogModifiedEvent.importantChange")
     public void onBlogModified(BlogModifiedEvent blogModifiedEvent) {
