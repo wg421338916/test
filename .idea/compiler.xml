@@ -7,12 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="designpattern" />
+        <module name="springbootmybatisstudy" />
+        <module name="springbootstudy" />
         <module name="threaddemo" />
         <module name="zookeeperstudy" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="designpattern" target="1.8" />
+      <module name="springbootmybatisstudy" target="1.8" />
+      <module name="springbootstudy" target="1.8" />
       <module name="studydemo" target="1.8" />
       <module name="test" target="1.8" />
       <module name="threaddemo" target="1.8" />
