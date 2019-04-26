@@ -2,7 +2,7 @@ package com.wanggang.springbootstudy.controllers;
 
 import com.wanggang.springbootstudy.domain.BlogModifiedEvent;
 import com.wanggang.springbootstudy.domain.User;
-import com.wanggang.springbootstudy.services.MyService;
+import com.wanggang.springbootstudy.services.autoconfig.MyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +39,7 @@ public class MyController {
 
     @GetMapping("/test")
     public String test() {
-        return myService.getUserById();
+        return myService.getUserById() + myService.getName();
     }
 
     @PostMapping("/{appId:.+}")
