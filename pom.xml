@@ -11,6 +11,7 @@
     <modules>
         <module>zookeeperstudy</module>
         <module>designpattern</module>
+        <module>core</module>
     </modules>
 
 

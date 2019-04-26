@@ -1,9 +1,11 @@
 package com.wanggang.springbootstudy.services.autoconfig;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 /**
  * @program: test
@@ -15,8 +17,10 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnClass(MyFirstConnection.class)
 public class MyFirstConnectionConfiguration {
 
+//    @Primary
     @Bean
-    @ConditionalOnMissingBean(IConnection.class)
+    @Qualifier("MyFirstConnection")
+//    @ConditionalOnMissingBean(IConnection.class)
     public MyFirstConnection MyFirstConnection() {
         return new MyFirstConnection();
     }

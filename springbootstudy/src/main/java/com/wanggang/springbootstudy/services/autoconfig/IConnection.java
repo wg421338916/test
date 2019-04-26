@@ -7,4 +7,5 @@ package com.wanggang.springbootstudy.services.autoconfig;
  * @create: 2019-04-26 09:51
  **/
 public interface IConnection {
+    void  test();
 }

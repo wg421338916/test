@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Import;
 public class MyServiceAutoConfiguration {
     @Bean
     @ConditionalOnBean(IConnection.class)
-    public MyService myService(MyProperties myProperties, IConnection connection) {
+    public MyService myService(MyProperties myProperties,IConnection connection) {
         return new MyService(myProperties, connection);
     }
 }

@@ -3,6 +3,7 @@ package com.wanggang.springbootstudy.controllers;
 import com.wanggang.springbootstudy.domain.BlogModifiedEvent;
 import com.wanggang.springbootstudy.domain.User;
 import com.wanggang.springbootstudy.services.autoconfig.MyService;
+import com.wanggang.springbootstudy.services.autoconfig.MyServiceV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,9 @@ import java.util.List;
 @RestController
 public class MyController {
     private final MyService myService;
+
+    @Autowired
+    private MyServiceV2 myServiceV2;
 
     @Autowired
     private ApplicationEventPublisher publisher;
@@ -39,6 +43,8 @@ public class MyController {
 
     @GetMapping("/test")
     public String test() {
+        myServiceV2.test1();
+        myServiceV2.test2();
         return myService.getUserById() + myService.getName();
     }
 

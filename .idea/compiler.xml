@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="apollostudy" />
+        <module name="core" />
         <module name="designpattern" />
         <module name="springbootmybatisstudy" />
         <module name="springbootstudy" />
@@ -16,6 +16,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="apollostudy" target="1.8" />
+      <module name="core" target="1.8" />
       <module name="designpattern" target="1.8" />
       <module name="springbootmybatisstudy" target="1.8" />
       <module name="springbootstudy" target="1.8" />

@@ -7,4 +7,8 @@ package com.wanggang.springbootstudy.services.autoconfig;
  * @create: 2019-04-26 09:52
  **/
 public class MySecondConnection implements IConnection {
+    @Override
+    public void test() {
+        System.out.println("second");
+    }
 }
