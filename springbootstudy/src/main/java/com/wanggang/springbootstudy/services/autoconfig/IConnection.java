@@ -9,3 +9,6 @@ package com.wanggang.springbootstudy.services.autoconfig;
 public interface IConnection {
     void  test();
 }
+
+
+//http://www.cnblogs.com/lzmrex/p/6944961.html

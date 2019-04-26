@@ -16,6 +16,7 @@
 
 package com.wanggang.core.data.autoconfig.redis;
 
+import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -45,28 +46,34 @@ import java.net.UnknownHostException;
  * @author Marco Aust
  * @author Mark Paluch
  */
-@Primary
 @Configuration//(proxyBeanMethods = false)
-//@ConditionalOnClass(RedisOperations.class)
-@EnableConfigurationProperties(RedisProperties.class)
-@Import({ LettuceConnectionConfiguration.class })
+@ConditionalOnClass(RedisOperations.class)
+//@EnableConfigurationProperties(RedisProperties.class)
+@Import({LettuceConnectionConfiguration.class})
+@EnableApolloConfig({"common.redis"})
 public class RedisAutoConfiguration {
-	@Bean
-//	@ConditionalOnMissingBean(name = "redisTemplate")
-	public RedisTemplate<Object, Object> redisTemplate(
-			RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
-		RedisTemplate<Object, Object> template = new RedisTemplate<>();
-		template.setConnectionFactory(redisConnectionFactory);
-		return template;
-	}
 
-	@Bean
-//	@ConditionalOnMissingBean
-	public StringRedisTemplate stringRedisTemplate(
-			RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
-		StringRedisTemplate template = new StringRedisTemplate();
-		template.setConnectionFactory(redisConnectionFactory);
-		return template;
-	}
+    @Bean
+    public RedisProperties redisProperties() {
+        return new RedisProperties();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(name = "redisTemplate")
+    public RedisTemplate<Object, Object> redisTemplate(
+            RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
+        RedisTemplate<Object, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(redisConnectionFactory);
+        return template;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public StringRedisTemplate stringRedisTemplate(
+            RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
+        StringRedisTemplate template = new StringRedisTemplate();
+        template.setConnectionFactory(redisConnectionFactory);
+        return template;
+    }
 
 }
