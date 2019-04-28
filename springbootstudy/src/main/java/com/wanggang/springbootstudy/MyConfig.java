@@ -12,13 +12,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MyConfig {
     @Value("${test}")
-    private Integer test;
+    private String test;
 
-    public Integer getTest() {
+    public String getTest() {
         return test;
     }
 
-    public void setTest(Integer test) {
+    public void setTest(String test) {
         this.test = test;
     }
 }

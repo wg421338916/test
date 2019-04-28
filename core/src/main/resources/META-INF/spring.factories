@@ -1,2 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.wanggang.core.data.autoconfig.redis.RedisAutoConfiguration
+com.wanggang.core.data.autoconfig.redis.RedisAutoConfiguration,\
+com.wanggang.core.data.autoconfig.jackson.JacksonAutoConfiguration,\
+com.wanggang.core.data.autoconfig.mybatis.MybatisAutoConfiguration,\
+com.wanggang.core.data.autoconfig.jdbc.DataSourceAutoConfiguration

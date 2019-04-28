@@ -1,9 +1,8 @@
 package com.wanggang.springbootstudy.services.autoconfig;
 
-import com.wanggang.core.data.autoconfig.redis.RedisProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,8 +13,8 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class MyServiceV2 {
-    @Autowired
-    StringRedisTemplate stringRedisTemplate;
+//    @Autowired
+//    StringRedisTemplate stringRedisTemplate;
 
     @Autowired
     @Qualifier("MyFirstConnection")
@@ -27,8 +26,10 @@ public class MyServiceV2 {
     public void test1() {
         properties.toString();
 
-        stringRedisTemplate.opsForHash().put("test", "test", "test");
+
         connection.test();
+
+//        stringRedisTemplate.opsForHash().put("test", "test", "test");
     }
 
     public void test2() {

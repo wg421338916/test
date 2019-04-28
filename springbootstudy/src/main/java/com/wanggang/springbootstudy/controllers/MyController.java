@@ -4,6 +4,8 @@ import com.wanggang.springbootstudy.domain.BlogModifiedEvent;
 import com.wanggang.springbootstudy.domain.User;
 import com.wanggang.springbootstudy.services.autoconfig.MyService;
 import com.wanggang.springbootstudy.services.autoconfig.MyServiceV2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +19,13 @@ import java.util.List;
  * @author: Mr.WG
  * @create: 2019-04-22 13:33
  **/
+
 @RestController
 public class MyController {
     private final MyService myService;
+
+    private static final Logger logger = LoggerFactory.getLogger(MyController.class);
+
 
     @Autowired
     private MyServiceV2 myServiceV2;
@@ -43,6 +49,9 @@ public class MyController {
 
     @GetMapping("/test")
     public String test() {
+
+        logger.debug("ok" + System.currentTimeMillis());
+
         myServiceV2.test1();
         myServiceV2.test2();
         return myService.getUserById() + myService.getName();
