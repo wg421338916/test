@@ -6,6 +6,18 @@ public class CountDownLatchDemo {
         CountDownLatch countDownLatch = new CountDownLatch(0);
         countDownLatch.await();
 
+        System.out.println(System.currentTimeMillis());
+
+        CountDownLatch countDownLatch2 = new CountDownLatch(1);
+        countDownLatch2.countDown();
+        countDownLatch2.await(10,TimeUnit.SECONDS);
+
+
+        CountDownLatch countDownLatch3 = new CountDownLatch(1);
+        countDownLatch3.await(10,TimeUnit.SECONDS);
+
+        System.out.println(System.currentTimeMillis());
+
         CountDownLatch latch = new CountDownLatch(1);
         new Thread(() -> {
             System.out.println("-s");
