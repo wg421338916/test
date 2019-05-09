@@ -1,5 +1,6 @@
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class CountDownLatchDemo {
     public static void main(String[] args) throws InterruptedException {
@@ -10,11 +11,11 @@ public class CountDownLatchDemo {
 
         CountDownLatch countDownLatch2 = new CountDownLatch(1);
         countDownLatch2.countDown();
-        countDownLatch2.await(10,TimeUnit.SECONDS);
+        countDownLatch2.await(10, TimeUnit.SECONDS);
 
 
         CountDownLatch countDownLatch3 = new CountDownLatch(1);
-        countDownLatch3.await(10,TimeUnit.SECONDS);
+        countDownLatch3.await(10, TimeUnit.SECONDS);
 
         System.out.println(System.currentTimeMillis());
 
@@ -34,3 +35,4 @@ public class CountDownLatchDemo {
         System.out.println("exit");
     }
 }
+

@@ -32,5 +32,31 @@ public class AtomicIntegerDemo {
             }).start();
         });
 
+        AtomicIntergerLock lock = new AtomicIntergerLock();
+        lock.tryLock();
+
+        System.out.println("aaaaaaaaaaaaaaaa");
+
+        lock.unLock();
+
+    }
+}
+
+
+class AtomicIntergerLock {
+    AtomicInteger atomicInteger = new AtomicInteger();
+    Thread current;
+
+    public void tryLock() {
+        boolean b = atomicInteger.compareAndSet(0, 1);
+        if (!b)
+            throw new RuntimeException("");
+        else
+            current = Thread.currentThread();
+    }
+
+    public void unLock() {
+        if (current == Thread.currentThread())
+            atomicInteger.compareAndSet(1, 0);
     }
 }

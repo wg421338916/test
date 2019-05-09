@@ -17,13 +17,13 @@ public class CyclicBarrierDemo {
          * 等待所有就绪继续,10次
          */
         CyclicBarrier cyclicBarrier = new CyclicBarrier(count);
-        CyclicBarrierDemo.wait(count, cyclicBarrier);
+        CyclicBarrierDemo.await(count, cyclicBarrier);
 
         /***
          * 在等待所有就绪继续,10次
          */
         TimeUnit.SECONDS.sleep(5);
-        CyclicBarrierDemo.wait(count, cyclicBarrier);
+        CyclicBarrierDemo.await(count, cyclicBarrier);
 
         TimeUnit.SECONDS.sleep(5);
         System.out.println("exit-1");
@@ -33,7 +33,7 @@ public class CyclicBarrierDemo {
         System.out.println("exit-2");
     }
 
-    public static void wait(int count, CyclicBarrier cyclicBarrier) {
+    public static void await(int count, CyclicBarrier cyclicBarrier) {
 
         IntStream.range(0, count).forEach(i -> {
             new Thread(() -> {
