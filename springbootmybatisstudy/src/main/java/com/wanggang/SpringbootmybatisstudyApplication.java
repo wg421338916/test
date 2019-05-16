@@ -1,4 +1,4 @@
-package com.wanggang.springbootmybatisstudy;
+package com.wanggang;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

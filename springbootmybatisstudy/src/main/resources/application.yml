@@ -3,6 +3,11 @@
 spring:
   application:
     name: springboot-test-exam1
+  redis:
+    host: 47.100.12.249
+    port: 6379
+    password: shuixiang2018
+    database: 5
   datasource:
     # 使用阿里的Druid连接池
     type: com.alibaba.druid.pool.DruidDataSource
@@ -54,3 +59,11 @@ spring:
         login-password: 123456
         # 是否启动监控
         enabled: true
+# MyBatis
+mybatis:
+    # 搜索指定包别名
+    typeAliasesPackage: com.ruoyi.project
+    # 配置mapper的扫描，找到所有的mapper.xml映射文件
+    mapperLocations: classpath:mybatis/**/*Mapper.xml
+    # 加载全局的配置文件
+    configLocation: classpath:mybatis/mybatis-config.xml
