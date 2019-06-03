@@ -9,6 +9,8 @@ import java.util.stream.IntStream;
  * @description: CyclicBarrier
  * @author: Mr.WG
  * @create: 2019-04-18 15:41
+ *
+ * 等待所有人准备好在开始
  **/
 public class CyclicBarrierDemo {
     public static void main(String[] args) throws InterruptedException, BrokenBarrierException, TimeoutException {

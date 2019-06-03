@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- <classPathEntry location="F:\.m2\repository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar"/> -->
+	
+    <context id="MySqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="addRemarkComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://rm-uf6g6eml362gv76a7go.mysql.rds.aliyuncs.com:3306/sxyx?noAccessToProcedureBodies=true&amp;zeroDateTimeBehavior=convertToNull&amp;autoReconnect=true&amp;characterEncoding=UTF-8&amp;useUnicode=true"
+                        userId="qmarket_wr"
+                        password="shuixiang@20180514">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="test.model" targetProject="springbootmybatisstudy/src/main/java">
+            <property name="trimStrings" value="true" />
+            <!--<property name="rootClass" value="tk.mybatis.simple.model2.BaseEntity" />-->
+            <property name="constructorBased" value="false"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="test2.xml"  targetProject="springbootmybatisstudy/src/main/resources/mybatis/gen2"/>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="test.dao"  targetProject="springbootmybatisstudy/src/main/java"/>
+
+        <table tableName="sxyp_redbag_activity_detail">
+            <generatedKey column="id" sqlStatement="MySql"/>
+        </table>
+    </context>
+</generatorConfiguration>
