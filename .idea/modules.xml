@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/designpattern/designpattern.iml" filepath="$PROJECT_DIR$/designpattern/designpattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mogodbstudy/mogodbstudy.iml" filepath="$PROJECT_DIR$/mogodbstudy/mogodbstudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mongodbstudy/mongodbstudy.iml" filepath="$PROJECT_DIR$/mongodbstudy/mongodbstudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myeurekademo/myeurekademo.iml" filepath="$PROJECT_DIR$/myeurekademo/myeurekademo.iml" />
       <module fileurl="file://$PROJECT_DIR$/springbootmybatisstudy/springbootmybatisstudy.iml" filepath="$PROJECT_DIR$/springbootmybatisstudy/springbootmybatisstudy.iml" />
       <module fileurl="file://$PROJECT_DIR$/springbootstudy/springbootstudy.iml" filepath="$PROJECT_DIR$/springbootstudy/springbootstudy.iml" />
       <module fileurl="file://$PROJECT_DIR$/studydemo.iml" filepath="$PROJECT_DIR$/studydemo.iml" />

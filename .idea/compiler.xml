@@ -8,6 +8,10 @@
         <outputRelativeToContentRoot value="true" />
         <module name="core" />
         <module name="designpattern" />
+        <module name="eurekademo (1)" />
+        <module name="mogodbstudy" />
+        <module name="mongodbstudy" />
+        <module name="myeurekademo" />
         <module name="springbootmybatisstudy" />
         <module name="springbootstudy" />
         <module name="threaddemo" />
@@ -18,6 +22,11 @@
       <module name="apollostudy" target="1.8" />
       <module name="core" target="1.8" />
       <module name="designpattern" target="1.8" />
+      <module name="eurekademo" target="1.8" />
+      <module name="eurekademo (1)" target="1.8" />
+      <module name="mogodbstudy" target="1.8" />
+      <module name="mongodbstudy" target="1.8" />
+      <module name="myeurekademo" target="1.8" />
       <module name="springbootmybatisstudy" target="1.8" />
       <module name="springbootstudy" target="1.8" />
       <module name="studydemo" target="1.8" />

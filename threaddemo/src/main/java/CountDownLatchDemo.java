@@ -11,6 +11,7 @@ public class CountDownLatchDemo {
 
         CountDownLatch countDownLatch2 = new CountDownLatch(1);
         countDownLatch2.countDown();
+//        countDownLatch2.countDown();
         countDownLatch2.await(10, TimeUnit.SECONDS);
 
 
@@ -23,7 +24,7 @@ public class CountDownLatchDemo {
         new Thread(() -> {
             System.out.println("-s");
             try {
-                TimeUnit.SECONDS.sleep(5);
+                TimeUnit.SECONDS.sleep(20);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -31,7 +32,8 @@ public class CountDownLatchDemo {
             System.out.println("-e");
         }).start();
         System.out.println("wait");
-        latch.await();
+        latch.await(2, TimeUnit.SECONDS);
+        latch.countDown();
         System.out.println("exit");
     }
 }
