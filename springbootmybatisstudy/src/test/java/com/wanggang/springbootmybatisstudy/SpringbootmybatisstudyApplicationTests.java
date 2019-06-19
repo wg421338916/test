@@ -18,9 +18,9 @@ public class SpringbootmybatisstudyApplicationTests {
 
     @Test
     public void contextLoads() throws IOException {
-        byte[] sxyp_im_friend_rels = genService.generatorCode("sxyp_im_friend_rel");
+        byte[] sxyp_im_friend_rels = genService.generatorCode("sxyp_im_friend_operration");
 
-        String path = "E://temp.zip";
+        String path = "E://temp2.zip";
 
         OutputStream out = new FileOutputStream(new File(path));
 

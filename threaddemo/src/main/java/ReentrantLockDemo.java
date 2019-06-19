@@ -15,6 +15,8 @@ public class ReentrantLockDemo {
 //        lock.lock();
 //        lock.unlock();
 
+//        lock.lockInterruptibly();
+
 //
        ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
 //        reentrantReadWriteLock.readLock().lock();
