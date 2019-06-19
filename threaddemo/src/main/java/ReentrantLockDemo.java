@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class ReentrantLockDemo {
     public static void main(String[] args) throws InterruptedException {
         Lock lock = new ReentrantLock(true);//公平锁
-        Condition condition = lock.newCondition();
+        Condition condition = lock.newCondition();//类似 wait notify
 
         condition.await();
         condition.signal();
