@@ -48,6 +48,11 @@ public class PhaserDemo {
         System.out.println("num3-" + phaser3.getRegisteredParties());
         System.out.println("Game Over");
 
+        //-------------------------
+        final Phaser phaser4 = new Phaser(1);
+        phaser4.arrive();
+        System.out.println(phaser4.getArrivedParties());
+        System.out.println(phaser4.getRegisteredParties());
 
         TimeUnit.SECONDS.sleep(1000);
 
