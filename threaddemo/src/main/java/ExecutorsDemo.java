@@ -20,11 +20,17 @@ public class ExecutorsDemo {
 
         //demo.ThreadPoolExecutorStudy();
         //demo.threadPoolExecutorStudyV2();
-        demo.timerStudy();
+        //demo.timerStudy();
+        //demo.testAbortPolicy();
+        //demo.testDiscardOldestPolicy();
+        //demo.testCallerRunsPolicy();
+        //demo.testKeeplive();
+        demo.testprestartAllCoreThreads();
 
-        //--------- -------------- ---------- --
-        ScheduledExecutorService scheduledExecutorService =
-                Executors.newSingleThreadScheduledExecutor();
+//        TimeUnit.SECONDS.sleep(20);
+//        //--------- -------------- ---------- --
+//        ScheduledExecutorService scheduledExecutorService =
+//                Executors.newSingleThreadScheduledExecutor();
 
 
     }
@@ -122,5 +128,143 @@ public class ExecutorsDemo {
                 e.printStackTrace();
             }
         });
+    }
+
+    private void testAbortPolicy() {
+        ThreadPoolExecutor service = new ThreadPoolExecutor(
+                1,//初始化线程数量
+                2,//当队列满了就会开辟新线程
+                30l,//30s后回收空闲线程
+                TimeUnit.SECONDS,
+                new ArrayBlockingQueue<>(2),
+                r -> {
+                    Thread t = new Thread(r);
+                    t.setDaemon(true);
+                    return t;
+                },
+                new ThreadPoolExecutor.AbortPolicy()//超过队列容量则拒绝
+        );
+
+        for (int i = 0; i < 10; i++) {
+            service.submit(() -> {
+                try {
+                    TimeUnit.SECONDS.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+    }
+
+    private void testDiscardOldestPolicy() {
+        ThreadPoolExecutor service = new ThreadPoolExecutor(
+                1,//初始化线程数量
+                2,//当队列满了就会开辟新线程
+                30l,//30s后回收空闲线程
+                TimeUnit.SECONDS,
+                new ArrayBlockingQueue<>(2),
+                r -> {
+                    Thread t = new Thread(r);
+                    t.setDaemon(true);
+                    return t;
+                },
+                new ThreadPoolExecutor.DiscardOldestPolicy()
+        );
+
+        for (int i = 0; i < 10; i++) {
+            final int j = i;
+            service.submit(() -> {
+                try {
+                    System.out.println("ok:" + String.valueOf(j));
+                    TimeUnit.SECONDS.sleep(10);
+                    System.out.println("oknone:" + String.valueOf(j));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+    }
+
+    private void testCallerRunsPolicy() {
+        //1. CallerRunsPolicy ：这个策略重试添加当前的任务，他会自动重复调用 execute() 方法，直到成功。
+        //2. AbortPolicy ：对拒绝任务抛弃处理，并且抛出异常。
+        //3. DiscardPolicy ：对拒绝任务直接无声抛弃，没有异常信息。
+        //4. DiscardOldestPolicy ：对拒绝任务不抛弃，而是抛弃队列里面等待最久的一个线程，然后把拒绝任务加到队列。
+        ThreadPoolExecutor service = new ThreadPoolExecutor(
+                1,//初始化线程数量
+                2,//当队列满了就会开辟新线程
+                30l,//30s后回收空闲线程
+                TimeUnit.SECONDS,
+                new ArrayBlockingQueue<>(2),
+                r -> {
+                    Thread t = new Thread(r);
+                    t.setDaemon(true);
+                    return t;
+                },
+                new ThreadPoolExecutor.CallerRunsPolicy()
+        );
+
+        for (int i = 0; i < 10; i++) {
+            final int j = i;
+            service.submit(() -> {
+                try {
+                    System.out.println("ok:" + String.valueOf(j));
+                    TimeUnit.SECONDS.sleep(10);
+                    System.out.println("oknone:" + String.valueOf(j));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+    }
+
+    private void testKeeplive() throws InterruptedException {
+        ThreadPoolExecutor service = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+        service.setKeepAliveTime(10, TimeUnit.SECONDS);
+        service.allowCoreThreadTimeOut(true);
+        for (int i = 0; i < 2; i++) {
+            final int j = i;
+            service.execute(() -> {
+                try {
+                    System.out.println("ok:" + String.valueOf(j));
+                    TimeUnit.SECONDS.sleep(5);
+                    System.out.println("oknone:" + String.valueOf(j));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        System.out.println(service.getActiveCount());
+        TimeUnit.SECONDS.sleep(20);
+        System.out.println(service.getActiveCount());
+
+        Runnable t = () -> {
+            System.out.println("run");
+        };
+        service.execute(t);
+
+        System.out.println(service.getActiveCount());
+
+        TimeUnit.SECONDS.sleep(10);
+
+        service.remove(t);//从队列中移除
+    }
+
+
+    private void testprestartAllCoreThreads() throws InterruptedException {
+        ThreadPoolExecutor service = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+        System.out.println(service.getActiveCount());
+
+        System.out.println(service.prestartCoreThread());
+        System.out.println(service.getActiveCount());
+
+        System.out.println(service.prestartAllCoreThreads());
+        System.out.println(service.getActiveCount());
+
+        System.out.println(service.prestartAllCoreThreads());
+        System.out.println(service.getActiveCount());
+
+        System.out.println(service.prestartCoreThread());
+        System.out.println(service.getActiveCount());
     }
 }
