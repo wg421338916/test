@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.toList;
  * https://blog.csdn.net/qq_38428623/article/details/85868695
  **/
 public class ExecutorsDemo {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
         ExecutorsDemo demo = new ExecutorsDemo();
 
         //demo.ThreadPoolExecutorStudy();
@@ -25,8 +25,8 @@ public class ExecutorsDemo {
         //demo.testDiscardOldestPolicy();
         //demo.testCallerRunsPolicy();
         //demo.testKeeplive();
-        demo.testprestartAllCoreThreads();
-
+        //demo.testprestartAllCoreThreads();
+         demo.testinvokeAll();
 //        TimeUnit.SECONDS.sleep(20);
 //        //--------- -------------- ---------- --
 //        ScheduledExecutorService scheduledExecutorService =
@@ -250,7 +250,6 @@ public class ExecutorsDemo {
         service.remove(t);//从队列中移除
     }
 
-
     private void testprestartAllCoreThreads() throws InterruptedException {
         ThreadPoolExecutor service = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
         System.out.println(service.getActiveCount());
@@ -266,5 +265,51 @@ public class ExecutorsDemo {
 
         System.out.println(service.prestartCoreThread());
         System.out.println(service.getActiveCount());
+    }
+
+    private void testinvokeAny() throws ExecutionException, InterruptedException {
+        ThreadPoolExecutor service = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+
+        List<Callable<Integer>> cs = IntStream.range(0, 5).boxed().map(
+                t -> (Callable<Integer>) () -> 1
+        ).collect(toList());
+
+        //同步，从5个里面挑选一个执行
+        Integer integer = service.invokeAny(cs);
+    }
+
+    private void testinvokeAll() throws ExecutionException, InterruptedException {
+        ThreadPoolExecutor service = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+
+        List<Callable<Integer>> cs = IntStream.range(0, 5).boxed().map(
+                t -> (Callable<Integer>) () -> 1
+        ).collect(toList());
+
+        service.invokeAll(cs).stream().forEach(t->{
+            try {
+                System.out.println(t.get());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void futureDemo() throws InterruptedException, ExecutionException, TimeoutException {
+        ExecutorService service = Executors.newFixedThreadPool(2);
+
+        Future<Integer> submit = service.submit(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            return 10;
+        });
+
+        submit.get();
+        submit.get(1,TimeUnit.SECONDS);
     }
 }
