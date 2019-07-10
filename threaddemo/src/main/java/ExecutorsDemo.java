@@ -26,7 +26,7 @@ public class ExecutorsDemo {
         //demo.testCallerRunsPolicy();
         //demo.testKeeplive();
         //demo.testprestartAllCoreThreads();
-         demo.testinvokeAll();
+        demo.testinvokeAll();
 //        TimeUnit.SECONDS.sleep(20);
 //        //--------- -------------- ---------- --
 //        ScheduledExecutorService scheduledExecutorService =
@@ -285,7 +285,7 @@ public class ExecutorsDemo {
                 t -> (Callable<Integer>) () -> 1
         ).collect(toList());
 
-        service.invokeAll(cs).stream().forEach(t->{
+        service.invokeAll(cs).stream().forEach(t -> {
             try {
                 System.out.println(t.get());
             } catch (InterruptedException e) {
@@ -310,6 +310,10 @@ public class ExecutorsDemo {
         });
 
         submit.get();
-        submit.get(1,TimeUnit.SECONDS);
+        submit.get(1, TimeUnit.SECONDS);
+
+//        submit.cancel()
+//        submit.isDone()
+//        submit.isCancelled()
     }
 }
