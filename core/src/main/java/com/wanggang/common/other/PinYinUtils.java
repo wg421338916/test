@@ -146,6 +146,13 @@ public class PinYinUtils {
         List<String> hanZiLongPinYin = PinYinUtils.getHanZiLongPinYin("凊亾兯");
         List<String> 凊亾兯 = PinYinUtils.getHanZiShortPinYin("凊亾兯");
 
+        List<String> aa = PinYinUtils.getHanZiShortPinYin("兯");
+
+
+        if (aa == null
+                || aa.size() == 0
+                || StringUtils.isEmpty(aa.get(0)))
+            System.out.println("ok");
 
         String s = EmojiParser.parseToAliases("李想:smirk:");
 
@@ -232,6 +239,8 @@ public class PinYinUtils {
     }
 
     private static void FormatImUserPinYin(ImMyFriend user) {
+
+
         if (user == null || StringUtils.isEmpty(user.getNickName()))
             return;
 
